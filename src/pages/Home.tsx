@@ -1,0 +1,25 @@
+function Home() {
+  return <main class="[&>p]:mb-5 [&>p]:font-serif prose">
+    <h1 class="text-2xl">
+      Welcome to Managing Maximilian
+    </h1>
+    <p>Maximilian I was born on March 22, 1459, in Wiener Neustadt, the son of Holy Roman Emperor Frederick III and Eleanor of Portugal. He grew up during a turbulent period for the House of Habsburg, as his father struggled to hold together a fragmented and financially strained empire. Despite these difficulties, Frederick III harbored grand ambitions for the dynasty, famously adopting the motto "AEIOU," often interpreted as a Latin phrase proclaiming Austria's destiny to rule the world. Maximilian was raised with this sense of dynastic purpose, and from an early age he was groomed to expand Habsburg influence through both military campaigns and, more distinctively, strategic marriages.</p>
+
+    <p>In 1477, Maximilian married Mary of Burgundy, heiress to the immensely wealthy Duchy of Burgundy, following the death of her father, Charles the Bold, in battle. This marriage was a turning point for the Habsburgs, bringing the rich Burgundian territories, including much of the Low Countries, into the family's orbit. The union was not without conflict, however, as King Louis XI of France sought to claim Burgundian lands for himself, leading to years of warfare between Maximilian and the French crown. Mary's tragic death in a riding accident in 1482 left Maximilian as regent for their young son, Philip the Handsome, complicating his authority in the Burgundian territories.</p>
+
+    <p>Maximilian's political career was also shaped by his role in the Holy Roman Empire, where he was elected King of the Romans in 1486, effectively designating him as his father's successor. Upon Frederick III's death in 1493, Maximilian became the de facto ruler of the empire, though he was never formally crowned Emperor by the Pope in Rome, a break from tradition. Instead, in 1508, he adopted the title "Elected Roman Emperor" with papal approval, sidestepping the need for a coronation journey to Italy, which had become politically fraught and dangerous for German rulers.</p>
+
+    <p>One of Maximilian's most notable legacies was his use of marriage alliances rather than warfare to expand Habsburg power, a strategy immortalized in the Latin phrase "Bella gerant alii, tu felix Austria nube," meaning others wage war, but you, happy Austria, marry. Through the marriages of his children and grandchildren, Maximilian secured Habsburg claims to Spain, Bohemia, and Hungary, laying the groundwork for the vast Habsburg empire that would dominate European politics for centuries. His son Philip's marriage to Joanna of Castile eventually brought the Spanish crown into Habsburg hands through their son, Charles V.</p>
+
+    <p>Maximilian was also a patron of the arts and a promoter of chivalric ideals, commissioning numerous works meant to glorify his reign and the Habsburg dynasty. He supported artists such as Albrecht Dürer, who created detailed woodcuts depicting Maximilian's triumphal processions and idealized military exploits. The emperor also wrote or commissioned semi-autobiographical works like Theuerdank and Weisskunig, which blended historical fact with romanticized chivalric fiction to craft a heroic public image of himself as a knight-emperor.</p>
+
+    <p>Militarily, Maximilian's reign saw ongoing conflicts, including the Swiss War of 1499, which ultimately resulted in a de facto independence for the Swiss Confederacy from imperial control. He also engaged in the Italian Wars, a prolonged series of conflicts involving France, Spain, and various Italian states, as European powers vied for dominance over the fractured Italian peninsula. These wars drained imperial resources and highlighted the limitations of Maximilian's authority despite his ambitious territorial claims.</p>
+
+    <p>Domestically, Maximilian pursued administrative reforms aimed at modernizing the governance of the Holy Roman Empire, including efforts to establish a more centralized judicial system through the Imperial Chamber Court, created in 1495. He also worked to reform the empire's fragmented military structure, attempting to create a more unified system of defense among the various German states. These reforms met with mixed success, as the empire's decentralized political structure and the self-interest of regional princes often undermined centralizing efforts.</p>
+
+    <p>Maximilian I died on January 12, 1519, in Wels, Austria, leaving behind a complex legacy as both a visionary dynast and a ruler whose ambitions frequently outpaced his practical resources. His marriage-based expansion strategy proved extraordinarily successful in the long term, setting the stage for his grandson Charles V to inherit an empire spanning Spain, the Netherlands, Austria, and vast territories in the New World. Maximilian is often remembered as "the last knight," a title reflecting both his chivalric self-image and his transitional role between medieval feudal traditions and the emerging early modern European state.</p>
+
+  </main>
+}
+
+export default Home;
