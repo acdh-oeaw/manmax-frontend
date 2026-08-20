@@ -12,27 +12,30 @@ export default function App() {
       {(props) => (
         <>
           <div class="min-h-screen flex flex-col">
+            <div class="flex flex-1">
+              <aside class="w-64 shrink-0 flex flex-col shadow-inner  drop-shadow-xs drop-shadow-blue-600">
+                <div class="relative w-full h-24  overflow-hidden bg-linear-to-br from-green-800 to-green-900   ">
+                  <div class="h-full w-full flex items-center justify-center   text-white relative font-serif">
+                    Managing Maximilian
+                  </div>
 
-
-            <Header/>
-
-            <div class="flex flex-1 mt-18">
-              <aside class="w-64 shrink-0 p-4 flex">
-                <nav class="bg-blue-100 rounded-sm shadow-sm grow backdrop-blur-2xl">Here is list of object types to view list</nav>
+                </div>
+                <nav class="relative grow  overflow-hidden bg-linear-to-br from-blue-500 to-blue-400  ">
+                  <div class="absolute inset-0 bg-[radial-gradient(circle_at_5%_0%,rgba(255,255,255,0.65),rgba(255,255,255,0)_55%)] mix-blend-soft-light">
+                    <div class="h-full w-full flex items-center justify-center uppercase font-semibold text-black">
+                      Managing Maximlian
+                    </div>
+                  </div>
+                </nav>
               </aside>
-              <main class="flex-1 p-4 mb-20" >
-                {props.children}
-              </main>
-
+              <main class="flex-1 mb-20">{props.children}</main>
             </div>
 
-
             <footer class="bg-gray-100 p-4 text-xs">
-              Managing Maximilian Project (conceived in all its glory by Andreas Zajic)
+              Managing Maximilian Project (conceived in all its glory by Andreas
+              Zajic)
             </footer>
-
           </div>
-
         </>
       )}
     </Router>

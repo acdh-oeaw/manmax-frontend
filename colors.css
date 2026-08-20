@@ -1,0 +1,291 @@
+
+@theme {
+  /* ============ Chromatic families ============ */
+  /* red      [     sampled] — Cambyses' crimson judicial robe */
+  --color-red-50: #f6f3f4;
+  --color-red-100: #ede3e5;
+  --color-red-200: #dec4c7;
+  --color-red-300: #d09aa1;
+  --color-red-400: #c46471;
+  --color-red-500: #b43c4c;
+  --color-red-600: #95323f;
+  --color-red-700: #782b35;
+  --color-red-800: #5f262d;
+  --color-red-900: #4a2127;
+  --color-red-950: #2e191c;
+
+  /* orange   [     sampled] — salmon-terracotta diamond floor tiles */
+  --color-orange-50: #f6f4f3;
+  --color-orange-100: #ede7e3;
+  --color-orange-200: #decec4;
+  --color-orange-300: #cfae9b;
+  --color-orange-400: #c28866;
+  --color-orange-500: #b1693e;
+  --color-orange-600: #935734;
+  --color-orange-700: #76482d;
+  --color-orange-800: #5e3b27;
+  --color-orange-900: #493022;
+  --color-orange-950: #2e211a;
+
+  /* amber    [     sampled] — gold-ochre brocade robe */
+  --color-amber-50: #f6f5f3;
+  --color-amber-100: #edeae3;
+  --color-amber-200: #dfd5c3;
+  --color-amber-300: #d2be99;
+  --color-amber-400: #c6a362;
+  --color-amber-500: #b68b3a;
+  --color-amber-600: #977330;
+  --color-amber-700: #795e2a;
+  --color-amber-800: #604b25;
+  --color-amber-900: #4b3c20;
+  --color-amber-950: #2e2719;
+
+  /* yellow   [     sampled] — gilt trim & carved gold ornament */
+  --color-yellow-50: #f6f6f3;
+  --color-yellow-100: #edebe3;
+  --color-yellow-200: #e0d8c2;
+  --color-yellow-300: #d3c497;
+  --color-yellow-400: #c9ae5f;
+  --color-yellow-500: #ba9936;
+  --color-yellow-600: #9a7f2d;
+  --color-yellow-700: #7c6727;
+  --color-yellow-800: #625223;
+  --color-yellow-900: #4c411f;
+  --color-yellow-950: #2f2918;
+
+  /* lime     [extrapolated] — warm yellow-green, in the spirit of the palette */
+  --color-lime-50: #f5f6f4;
+  --color-lime-100: #eaebe5;
+  --color-lime-200: #d6dac8;
+  --color-lime-300: #bfc8a2;
+  --color-lime-400: #a5b672;
+  --color-lime-500: #8da24e;
+  --color-lime-600: #758641;
+  --color-lime-700: #5f6c37;
+  --color-lime-800: #4c562e;
+  --color-lime-900: #3d4427;
+  --color-lime-950: #272b1c;
+
+  /* green    [     sampled] — olive foliage, courtyard tree */
+  --color-green-50: #f5f6f4;
+  --color-green-100: #e7ebe5;
+  --color-green-200: #cfd9ca;
+  --color-green-300: #b0c4a6;
+  --color-green-400: #8baf79;
+  --color-green-500: #6d9956;
+  --color-green-600: #5a7f48;
+  --color-green-700: #4a673c;
+  --color-green-800: #3d5232;
+  --color-green-900: #32412a;
+  --color-green-950: #22291e;
+
+  /* emerald  [extrapolated] — deep green, in the spirit of the palette */
+  --color-emerald-50: #f4f6f5;
+  --color-emerald-100: #e6eae8;
+  --color-emerald-200: #cad8d2;
+  --color-emerald-300: #a7c3b7;
+  --color-emerald-400: #7cac98;
+  --color-emerald-500: #5a967d;
+  --color-emerald-600: #4b7c68;
+  --color-emerald-700: #3e6555;
+  --color-emerald-800: #345145;
+  --color-emerald-900: #2b4037;
+  --color-emerald-950: #1f2925;
+
+  /* teal     [extrapolated] — blue-green, in the spirit of the palette */
+  --color-teal-50: #f4f5f5;
+  --color-teal-100: #e6eaea;
+  --color-teal-200: #cbd7d7;
+  --color-teal-300: #a9c1c0;
+  --color-teal-400: #7fa9a8;
+  --color-teal-500: #5d9290;
+  --color-teal-600: #4e7978;
+  --color-teal-700: #416261;
+  --color-teal-800: #364f4e;
+  --color-teal-900: #2d3f3e;
+  --color-teal-950: #1f2828;
+
+  /* cyan     [extrapolated] — pale blue-green, in the spirit of the palette */
+  --color-cyan-50: #f4f5f6;
+  --color-cyan-100: #e5e9eb;
+  --color-cyan-200: #cad5d9;
+  --color-cyan-300: #a6bdc4;
+  --color-cyan-400: #79a1af;
+  --color-cyan-500: #568999;
+  --color-cyan-600: #48717f;
+  --color-cyan-700: #3c5c67;
+  --color-cyan-800: #324a52;
+  --color-cyan-900: #2a3b41;
+  --color-cyan-950: #1e2729;
+
+  /* sky      [     sampled] — sky above the loggia, background */
+  --color-sky-50: #f4f5f6;
+  --color-sky-100: #e5e9eb;
+  --color-sky-200: #c8d3da;
+  --color-sky-300: #a2bac8;
+  --color-sky-400: #729cb6;
+  --color-sky-500: #4e82a2;
+  --color-sky-600: #416c86;
+  --color-sky-700: #37586c;
+  --color-sky-800: #2e4756;
+  --color-sky-900: #273944;
+  --color-sky-950: #1c252b;
+
+  /* blue     [     sampled] — executioner's slate-blue tunic */
+  --color-blue-50: #f4f5f6;
+  --color-blue-100: #e5e8eb;
+  --color-blue-200: #c9d0da;
+  --color-blue-300: #a4b3c7;
+  --color-blue-400: #7591b3;
+  --color-blue-500: #51749e;
+  --color-blue-600: #446083;
+  --color-blue-700: #394f6a;
+  --color-blue-800: #304055;
+  --color-blue-900: #293443;
+  --color-blue-950: #1d232a;
+
+  /* indigo   [extrapolated] — deep blue shadow, in the spirit of the palette */
+  --color-indigo-50: #f4f4f6;
+  --color-indigo-100: #e5e6eb;
+  --color-indigo-200: #c9cbd9;
+  --color-indigo-300: #a5a9c5;
+  --color-indigo-400: #777fb1;
+  --color-indigo-500: #545d9c;
+  --color-indigo-600: #464e81;
+  --color-indigo-700: #3b4169;
+  --color-indigo-800: #313653;
+  --color-indigo-900: #292d42;
+  --color-indigo-950: #1d1f2a;
+
+  /* violet   [extrapolated] — cool shadow tone, in the spirit of the palette */
+  --color-violet-50: #f4f4f6;
+  --color-violet-100: #e6e5eb;
+  --color-violet-200: #cdcad9;
+  --color-violet-300: #aca6c4;
+  --color-violet-400: #8479af;
+  --color-violet-500: #645699;
+  --color-violet-600: #53487f;
+  --color-violet-700: #453c67;
+  --color-violet-800: #393252;
+  --color-violet-900: #2f2a41;
+  --color-violet-950: #201e29;
+
+  /* purple   [extrapolated] — cool shadow tone, in the spirit of the palette */
+  --color-purple-50: #f5f4f6;
+  --color-purple-100: #e8e5eb;
+  --color-purple-200: #d1c9d9;
+  --color-purple-300: #b4a5c5;
+  --color-purple-400: #9277b1;
+  --color-purple-500: #75549c;
+  --color-purple-600: #614681;
+  --color-purple-700: #503b69;
+  --color-purple-800: #413153;
+  --color-purple-900: #352942;
+  --color-purple-950: #231d2a;
+
+  /* fuchsia  [extrapolated] — warm shadow tone, in the spirit of the palette */
+  --color-fuchsia-50: #f6f4f6;
+  --color-fuchsia-100: #ebe5eb;
+  --color-fuchsia-200: #d9cad9;
+  --color-fuchsia-300: #c4a6c4;
+  --color-fuchsia-400: #af79af;
+  --color-fuchsia-500: #995699;
+  --color-fuchsia-600: #7f487f;
+  --color-fuchsia-700: #673c67;
+  --color-fuchsia-800: #523252;
+  --color-fuchsia-900: #412a41;
+  --color-fuchsia-950: #291e29;
+
+  /* pink     [     sampled] — flayed flesh / pale wound tones */
+  --color-pink-50: #f6f4f5;
+  --color-pink-100: #ebe5e8;
+  --color-pink-200: #dac9d0;
+  --color-pink-300: #c7a4b2;
+  --color-pink-400: #b3758f;
+  --color-pink-500: #9e5171;
+  --color-pink-600: #83445e;
+  --color-pink-700: #6a394e;
+  --color-pink-800: #55303f;
+  --color-pink-900: #432933;
+  --color-pink-950: #2a1d23;
+
+  /* rose     [     sampled] — blush-pink floor tiles */
+  --color-rose-50: #f6f4f4;
+  --color-rose-100: #ece4e6;
+  --color-rose-200: #dbc7ca;
+  --color-rose-300: #caa0a7;
+  --color-rose-400: #b96f7b;
+  --color-rose-500: #a54a59;
+  --color-rose-600: #893e4a;
+  --color-rose-700: #6f343e;
+  --color-rose-800: #582d34;
+  --color-rose-900: #45262b;
+  --color-rose-950: #2c1c1e;
+
+  /* ============ Neutral / gray families ============ */
+  /* slate    [     sampled] — blue-grey gothic stonework */
+  --color-slate-50: #f4f5f5;
+  --color-slate-100: #e7e8e9;
+  --color-slate-200: #cdd0d5;
+  --color-slate-300: #adb4bd;
+  --color-slate-400: #8692a1;
+  --color-slate-500: #677589;
+  --color-slate-600: #566171;
+  --color-slate-700: #47505c;
+  --color-slate-800: #3a414a;
+  --color-slate-900: #30353b;
+  --color-slate-950: #212327;
+
+  /* gray     [     sampled] — neutral shadow / aged plaster */
+  --color-gray-50: #f5f5f5;
+  --color-gray-100: #e9e8e7;
+  --color-gray-200: #d3d1cf;
+  --color-gray-300: #b9b5b1;
+  --color-gray-400: #9c948c;
+  --color-gray-500: #81786e;
+  --color-gray-600: #6b635b;
+  --color-gray-700: #58524b;
+  --color-gray-800: #47423e;
+  --color-gray-900: #393632;
+  --color-gray-950: #252422;
+
+  /* zinc     [     sampled] — pale stone highlights */
+  --color-zinc-50: #f5f5f5;
+  --color-zinc-100: #e9e9e7;
+  --color-zinc-200: #d3d2d0;
+  --color-zinc-300: #b8b8b2;
+  --color-zinc-400: #9a998e;
+  --color-zinc-500: #7f7e71;
+  --color-zinc-600: #69685d;
+  --color-zinc-700: #56554d;
+  --color-zinc-800: #46453f;
+  --color-zinc-900: #383833;
+  --color-zinc-950: #252522;
+
+  /* neutral  [     sampled] — true black of the judges' robes */
+  --color-neutral-50: #f5f5f5;
+  --color-neutral-100: #e8e8e8;
+  --color-neutral-200: #d1d1d1;
+  --color-neutral-300: #b5b5b5;
+  --color-neutral-400: #949494;
+  --color-neutral-500: #787878;
+  --color-neutral-600: #636363;
+  --color-neutral-700: #525252;
+  --color-neutral-800: #424242;
+  --color-neutral-900: #363636;
+  --color-neutral-950: #242424;
+
+  /* stone    [     sampled] — warm sandstone architecture */
+  --color-stone-50: #f5f5f4;
+  --color-stone-100: #e9e8e7;
+  --color-stone-200: #d5d2ce;
+  --color-stone-300: #bcb6ae;
+  --color-stone-400: #a09687;
+  --color-stone-500: #877a68;
+  --color-stone-600: #706657;
+  --color-stone-700: #5c5348;
+  --color-stone-800: #4a443b;
+  --color-stone-900: #3b3630;
+  --color-stone-950: #262421;
+
+}
