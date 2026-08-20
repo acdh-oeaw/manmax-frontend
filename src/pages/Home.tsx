@@ -1,9 +1,9 @@
 import MaxImg from "../max.jpg";
 
 function Home() {
-  return <><img src={MaxImg} class="w-full h-24  overflow-y-clip object-cover object-top"/><main class="[&>p]:mb-5 [&>p]:font-serif prose text-amber-50">
+  return <main class="[&>p]:mb-5 [&>p]:font-serif prose text-gray-800-50">
 
-    <h1 class="text-2xl text-amber-50">
+    <h1 class="text-2xl text-gray-900-50">
       Welcome to Managing Maximilian
     </h1>
     <p>Maximilian I was born on March 22, 1459, in Wiener Neustadt, the son of Holy Roman Emperor Frederick III and Eleanor of Portugal. He grew up during a turbulent period for the House of Habsburg, as his father struggled to hold together a fragmented and financially strained empire. Despite these difficulties, Frederick III harbored grand ambitions for the dynasty, famously adopting the motto "AEIOU," often interpreted as a Latin phrase proclaiming Austria's destiny to rule the world. Maximilian was raised with this sense of dynastic purpose, and from an early age he was groomed to expand Habsburg influence through both military campaigns and, more distinctively, strategic marriages.</p>
@@ -22,7 +22,7 @@ function Home() {
 
     <p>Maximilian I died on January 12, 1519, in Wels, Austria, leaving behind a complex legacy as both a visionary dynast and a ruler whose ambitions frequently outpaced his practical resources. His marriage-based expansion strategy proved extraordinarily successful in the long term, setting the stage for his grandson Charles V to inherit an empire spanning Spain, the Netherlands, Austria, and vast territories in the New World. Maximilian is often remembered as "the last knight," a title reflecting both his chivalric self-image and his transitional role between medieval feudal traditions and the emerging early modern European state.</p>
 
-  </main></>
+  </main>
 }
 
 export default Home;
