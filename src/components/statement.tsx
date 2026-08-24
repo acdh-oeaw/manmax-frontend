@@ -51,11 +51,11 @@ export const Statement = (props: TStatementProps) => {
                   <div class="col-span-8 flex items-center">
                     <For each={fieldValue}>
                       {(entity) => (
-                        <div class="flex mr-3 cursor-pointer select-none">
-                          <div class="bg-blue-700 text-white font-semibold uppercase text-xs px-2 rounded-l-sm flex items-center">
-                            {entity.type}
+                        <div class=" mr-3 cursor-pointer select-none flex flex-col">
+                          <div class="bg-purple-600 text-white font-semibold uppercase text-[10px] px-2 py-0.5 rounded-t-sm flex items-center w-fit ml-2 shadow-xs">
+                            {(modelDefs[entity.type as keyof typeof modelDefs]).verboseName}
                           </div>
-                          <div class="bg-white rounded-r-sm text-sm font-serif text-black py-2 px-3">
+                          <div class="bg-slate-400 rounded-sm text-sm font-serif text-white py-2 px-3">
                             {removeBrackets(entity.label)}
                           </div>
                         </div>

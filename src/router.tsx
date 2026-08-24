@@ -11,7 +11,7 @@ export const Router = createRouter({
   routes: [
     { path: "/", component: Home },
     { path: "/about", component: lazy(() => import("./pages/About")) },
-    { path: "/network", component: Network },
+    { path: "/network", component: lazy(() => import("./pages/Network")) },
     defineRoute({
       path: "/factoid",
       preload: ({ location }) => {

@@ -2416,7 +2416,7 @@ export type TypeMap = {
 
 };
 
-type ModelDef = {
+export type ModelDef = {
   metatype: "statement" | "entity" | null;
   verboseName: string;
   verboseNamePlural: string | null;
