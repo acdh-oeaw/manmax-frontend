@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import solid from '@solidjs/vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
-
+import path from 'path';
 
 export default defineConfig({
   // Turnkey client mode: no index.html and no mount file — the plugin
@@ -9,7 +9,7 @@ export default defineConfig({
   // (or a built-in shell). `vite build` prerenders the shell into
   // dist/client/index.html and emits a purely static dist/client.
   plugins: [
-    solid({ start: true, ssr: true }), // add `ssr: true` for streaming SSR
+    solid({ start: {devtools: false}, ssr: true }), // add `ssr: true` for streaming SSR
     tailwindcss(),
   ],
   server: {
@@ -20,5 +20,8 @@ export default defineConfig({
     // Keep images as asset files instead of inlining them into the JS bundle.
     assetsInlineLimit: 0,
   },
+  optimizeDeps: {
+      include: ["sigma", "graphology", "graphology-layout-forceatlas2"],
+    },
 
 });
