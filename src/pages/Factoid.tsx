@@ -31,8 +31,8 @@ export default function Factoid(props: FactoidProps) {
             Last updated by <span class="font-semibold">{factoid().modified_by}</span>, {new Date(factoid().modified_when).toDateString()}
           </div>
         </div>
-        <div class="mt-12 bg-zinc-300 rounded-sm p-4 w-fit relative">
-          <div class="absolute -top-6 h-6 bg-amber-500 font-semibold text-xs text-white uppercase py-1 px-2 rounded-t-xs select-none">
+        <div class="mt-12 bg-slate-100 rounded-sm p-4 w-fit relative">
+          <div class="absolute -top-6 h-6 bg-amber-600 font-semibold text-xs text-white uppercase py-1 px-2 rounded-t-xs select-none">
             Quelle
           </div>
           <span
@@ -47,11 +47,11 @@ export default function Factoid(props: FactoidProps) {
           </Show>
         </div>
 
-        <hr class="mt-12" />
+        <div class="border-b border-slate-200 mt-12 mb-16"> </div>
         <div>
           <For each={factoid().has_statements}>
             {(statement) => (
-              <Statement statement={statement}/>
+              <Statement statement={statement} topLevel={true}/>
             )}
           </For>
         </div>

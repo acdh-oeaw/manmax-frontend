@@ -1,6 +1,7 @@
 import MaxImg from "../max.jpg";
 
 function Home() {
+  console.log("HOME")
   return <main class="[&>p]:mb-5 [&>p]:font-serif prose text-gray-800-50">
 
     <h1 class="text-2xl text-gray-900-50">

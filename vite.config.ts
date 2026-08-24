@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import solid from '@solidjs/vite-plugin';
-import tailwindcss from '@tailwindcss/vite'
+import tailwindcss from '@tailwindcss/vite';
+
 
 export default defineConfig({
   // Turnkey client mode: no index.html and no mount file — the plugin
@@ -19,4 +20,5 @@ export default defineConfig({
     // Keep images as asset files instead of inlining them into the JS bundle.
     assetsInlineLimit: 0,
   },
+
 });

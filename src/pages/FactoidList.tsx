@@ -22,10 +22,10 @@ export default function FactoidList(props: FactoidProps) {
   return (
     <>
       <Title>Factoids | ManMax</Title>
-
-      <aside class="mb-12 font-sans text-gray-800 prose bg-gray-100 p-3 rounded-sm">
-        <h1 class="text-2xl font-sans  font-semibold mb-8 inline mr-2">
-          Faktoide</h1> bilden die Grundlage des Datenmodells von Mananging Maximilian. Jedes Faktoid repräsentiert die Interpretation eines Abschnitts eines Quellenmaterials. Es kann beliebig viele Aussagen enthalten, die den Inhalt formal darstellen.
+      <h1 class="text-2xl font-sans  font-semibold mb-20 inline mr-2">
+        Factoids</h1>
+      <aside class="mb-12 mt-6 font-sans text-gray-800 prose rounded-sm block">
+         Faktoide bilden die Grundlage des Datenmodells von Mananging Maximilian. Jedes Faktoid repräsentiert die Interpretation eines Abschnitts eines Quellenmaterials. Es kann beliebig viele Aussagen enthalten, die den Inhalt formal darstellen.
       </aside>
       <div class="mb-12  bg-gray-100 p-3 rounded-sm">
         <div class="flex justify-center items-center grow">
@@ -49,8 +49,8 @@ export default function FactoidList(props: FactoidProps) {
             {(factoid) => (
               <a
                 href={paths.factoid(factoid.id)}
-                class="bg-blue-600 hover:bg-blue-700 rounded-xs flex items-center p-2 text-white font-serif"
-                textContent={removeBrackets(factoid.label)}
+                class="bg-blue-800 hover:bg-blue-700 rounded-xs flex items-center p-3 text-sm text-white font-serif"
+                textContent={factoid.label}
               />
             )}
           </For>

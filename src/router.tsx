@@ -5,11 +5,13 @@ import Factoid from "./pages/Factoid";
 import { getFactoid, getFactoidList } from "./test_data_loaders/factoid";
 import FactoidList from "./pages/FactoidList";
 import { lazy } from "solid-js";
+import Network from "./pages/Network";
 
 export const Router = createRouter({
   routes: [
     { path: "/", component: Home },
     { path: "/about", component: lazy(() => import("./pages/About")) },
+    { path: "/network", component: lazy(() => import("./pages/Network")) },
     defineRoute({
       path: "/factoid",
       preload: ({ location }) => {
