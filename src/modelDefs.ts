@@ -3371,3 +3371,10 @@ export type StatementDefsWithTypes = {
 export type EntityDefsWithTypes = {
   [K in KeysByMetatype<"entity"> & keyof TypeMap]: TypeMap[K];
 };
+
+export type TPerson = {
+  type: "person",
+  id: number,
+  label: string,
+  statements: StatementTypes[]
+}

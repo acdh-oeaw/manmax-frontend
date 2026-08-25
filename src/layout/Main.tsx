@@ -74,6 +74,7 @@ export function Main(props: MainProps) {
             <div class="fixed [&>a]:block [&>a]:w-48  [&>a]:bg-green-600 [&>a]:hover:bg-green-500 [&>a]:active:shadow-inner [&>a]:text-white [&>a]:uppercase [&>a]:font-semibold [&>a]:text-sm [&>a]:p-2 [&>a]:aria-[current=page]:bg-red-600 [&>a]:aria-[current=page]:cursor-default">
               <a href={paths()}>Home</a>
               <a href={paths.about()}>About</a>
+              <a href={paths.person()}>Persons</a>
               <a href={paths.factoid()}>Factoids</a>
               <a href={paths.network()}>Network</a>
             </div>
