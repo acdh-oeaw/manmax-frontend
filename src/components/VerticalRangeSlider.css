@@ -1,0 +1,52 @@
+.v-range {
+  --v-range-track-width: 6px;
+  --v-range-thumb-size: 18px;
+  --v-range-track-color: #e5e5e5;
+  --v-range-fill-color: #7c5cff;
+  --v-range-thumb-color: #ffffff;
+  --v-range-thumb-border: #7c5cff;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--v-range-thumb-size) + 4px);
+}
+
+.v-range__track {
+  position: relative;
+  width: var(--v-range-track-width);
+  height: 100%;
+  border-radius: calc(var(--v-range-track-width) / 2);
+  background: var(--v-range-track-color);
+}
+
+.v-range__fill {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  border-radius: inherit;
+  background: var(--v-range-fill-color);
+}
+
+.v-range__thumb {
+  position: absolute;
+  left: 50%;
+  width: var(--v-range-thumb-size);
+  height: var(--v-range-thumb-size);
+  border-radius: 50%;
+  background: var(--v-range-thumb-color);
+  border: 2px solid var(--v-range-thumb-border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transform: translate(-50%, 50%);
+  cursor: grab;
+  touch-action: none; /* stop touch scroll from hijacking the drag */
+}
+
+.v-range__thumb:active {
+  cursor: grabbing;
+}
+
+.v-range__thumb:focus-visible {
+  outline: 2px solid var(--v-range-fill-color);
+  outline-offset: 2px;
+}

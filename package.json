@@ -22,9 +22,11 @@
     "@solidjs/router": "^2.0.0-next.17",
     "@solidjs/web": "^2.0.0-rc.0",
     "@tailwindcss/vite": "^4.3.3",
+    "@types/sigmajs": "^1.0.32",
     "graphology": "^0.26.0",
     "graphology-layout": "^0.6.1",
     "graphology-layout-forceatlas2": "^0.10.1",
+    "seedrandom": "^3.0.5",
     "sigma": "^4.0.0-beta.5",
     "solid-js": "^2.0.0-rc.1",
     "tailwindcss": "^4.3.3"

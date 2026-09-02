@@ -81,7 +81,7 @@ export function Main(props: MainProps) {
           </aside>
           <main
             class={[
-              "flex-1 mb-20 px-12 pt-12",
+              "flex-1 mb-2 px-12 pt-12",
               { "mt-53.75": !isShrunk(), "mt-16": isShrunk() },
             ]}
           >

@@ -102,6 +102,9 @@ function extractRelevantDate(dateStr) {
   return str; // plain date, no prefix
 }
 
+
+
+
 /**
  * Pads a partial date (YYYY or YYYY-MM) out to YYYY-MM-DD
  * so that string comparison sorts correctly.
@@ -143,12 +146,13 @@ function getOuterEntry(statement) {
  * Statements with no usable date (null, missing, or unparsable) are
  * collected under the "unknown" key, in their original order.
  *
- * Each bucket entry has the shape:
- *   { key: <outer key name>, statement: <original statement object> }
+ * Each bucket entry is simply the original statement object, untouched
+ * (it already carries its own outer key, e.g. { "Ausgeführt_von": {...} }).
  *
  * @param {Array<Object>} statements
- * @returns {Object} map of year (or "unknown") -> array of entries,
- *                    years given in ascending order, "unknown" last
+ * @returns {Object} map of year (or "unknown") -> array of original
+ *                    statement objects, years given in ascending order,
+ *                    "unknown" last
  */
 export function groupStatementsByYear(statements) {
   const buckets = {};
@@ -158,25 +162,23 @@ export function groupStatementsByYear(statements) {
     const outer = getOuterEntry(statement);
     if (!outer) continue;
 
-    const { key, value } = outer;
+    const { value } = outer;
     const dateStr = value ? value.start_date_written : null;
     const relevantDate = extractRelevantDate(dateStr);
 
-    const entry = { key, statement };
-
     if (!relevantDate) {
-      unknown.push(entry);
+      unknown.push(statement);
       continue;
     }
 
     const year = extractYear(relevantDate);
     if (!year) {
-      unknown.push(entry);
+      unknown.push(statement);
       continue;
     }
 
     if (!buckets[year]) buckets[year] = [];
-    buckets[year].push({ ...entry, sortKey: normalizeForSort(relevantDate) });
+    buckets[year].push({ statement, sortKey: normalizeForSort(relevantDate) });
   }
 
   const sortedYears = Object.keys(buckets).sort();
@@ -184,7 +186,7 @@ export function groupStatementsByYear(statements) {
 
   for (const year of sortedYears) {
     buckets[year].sort((a, b) => a.sortKey.localeCompare(b.sortKey));
-    result[year] = buckets[year].map(({ key, statement }) => ({ key, statement }));
+    result[year] = buckets[year].map(({ statement }) => statement);
   }
 
   if (unknown.length > 0) {
@@ -225,8 +227,8 @@ const statements = [
 
 console.log(groupStatementsByYear(statements));
 // {
-//   "1901": [ { key: "someOtherType", statement: {...} } ],
-//   "1923": [ { key: "genannte_Person", statement: {...} } ],
-//   "unknown": [ { key: "genannte_Person", statement: {...} } ]
+//   "1901": [ { someOtherType: {...} } ],
+//   "1923": [ { genannte_Person: {...} } ],
+//   "unknown": [ { genannte_Person: {...} } ]
 // }
 */

@@ -109,7 +109,7 @@ export const Statement = (props: TStatementProps) => {
                                     ].verboseName
                                   }
                                 </div>
-                                <div class="bg-slate-400 rounded-sm text-sm font-serif text-white py-2 px-3">
+                                <div class="bg-slate-400 hover:bg-slate-500 rounded-sm text-sm font-serif text-white py-2 px-3">
                                   {removeBrackets(entity.label)}
                                 </div>
                               </a>

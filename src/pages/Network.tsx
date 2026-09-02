@@ -1,7 +1,13 @@
 import { onSettled, Loading, createEffect, Show, createSignal } from "solid-js";
 import Graph from "graphology";
 import { random } from "graphology-layout";
+import seedrandom from "seedrandom";
+import { FullNodeState } from "sigma/types";
+import { paths } from "../router";
+import { useSearchParams } from "@solidjs/router";
 
+// Initialize with a seed
+const rng = seedrandom("ASDF"); // Seed with string "hello"
 
 type NetworkGraphProps = {
   data: {
@@ -11,7 +17,7 @@ type NetworkGraphProps = {
         size: number;
         label: string;
         color: string;
-      }
+      };
     };
     edges: {
       source: string;
@@ -22,7 +28,7 @@ type NetworkGraphProps = {
 };
 
 export function NetworkGraph(props: NetworkGraphProps) {
-  const [clickedNodeId, setClickedNodeId] = createSignal<number | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   let container!: HTMLDivElement;
   let popupRef!: HTMLDivElement;
@@ -31,6 +37,11 @@ export function NetworkGraph(props: NetworkGraphProps) {
   // These are created only after onSettled() on the client.
   let renderer: any;
   let layout: any;
+
+  // Tracks the currently selected node id. Read by the nodeReducer below;
+  // updated in the clickNode handler. Plain closure state — never written
+  // to Graphology.
+
 
   // Graphology itself is safe to create during SSR.
   const graph = new Graph();
@@ -47,24 +58,30 @@ export function NetworkGraph(props: NetworkGraphProps) {
   createEffect(
     () => props.data,
     (data) => {
-      graph.clear();
+      //graph.clear();
 
       for (const [id, node] of Object.entries(data.nodes)) {
-        graph.addNode(id, {
-          size: node.size,
-          label: node.label,
-          color: node.color,
-        });
-      }
-
-      for (const edge of data.edges) {
-        if (graph.hasNode(edge.source) && graph.hasNode(edge.target)) {
-          graph.addEdge(edge.source, edge.target, {label: edge.label});
+        if (!graph.nodes().includes(id)) {
+          graph.addNode(id, {
+            size: node.size,
+            label: node.label,
+            color: node.color,
+            x: Math.random(),
+            y: Math.random(),
+          });
         }
       }
 
+      for (const edge of data.edges) {
+        try {
+          if (graph.hasNode(edge.source) && graph.hasNode(edge.target)) {
+            graph.addEdge(edge.source, edge.target, { label: edge.label });
+          }
+        } catch (UsageGraphError) {}
+      }
+
       // Initial positions are needed before FA2 starts.
-      random.assign(graph);
+      random.assign(graph, { rng: rng });
 
       if (ready) {
         renderer?.refresh();
@@ -74,7 +91,6 @@ export function NetworkGraph(props: NetworkGraphProps) {
   );
 
   onSettled(() => {
-
     void (async () => {
       console.log("initialising graph");
 
@@ -98,12 +114,12 @@ export function NetworkGraph(props: NetworkGraphProps) {
           pathStepCurved,
           sdfCircle,
           sdfTriangle,
-        }
+        },
       ] = await Promise.all([
         import("sigma"),
         import("@sigma/layout-fa2-gpu"),
         import("graphology-layout-forceatlas2"),
-        import("sigma/rendering")
+        import("sigma/rendering"),
       ]);
 
       if (disposed) {
@@ -120,14 +136,14 @@ export function NetworkGraph(props: NetworkGraphProps) {
         primitives: {
           edges: {
             extremities: [extremityArrow()],
-          }
+          },
         },
         styles: {
           nodes: {
             ...DEFAULT_STYLES.nodes,
-            size: 0.5,
+            size: 0.4,
             color: { attribute: "color" },
-            labelSize: 20,
+            labelSize: 12,
             label: { attribute: "label" },
             labelPosition: "right",
             x: { attribute: "x" },
@@ -137,17 +153,16 @@ export function NetworkGraph(props: NetworkGraphProps) {
           edges: {
             ...DEFAULT_STYLES.edges,
             size: 0.1,
-            label: { attribute: "label", },
-            labelSize: 10,
+            label: { attribute: "label" },
+            labelSize: 6,
             labelPosition: "auto",
-            "head": "arrow",
-
+            head: "arrow",
           },
         },
 
         settings: {
           allowInvalidContainer: true,
-          enableNodeDrag: true,
+          enableNodeDrag: false,
 
           // Same behaviour you had previously.
           autoRescale: true,
@@ -155,11 +170,33 @@ export function NetworkGraph(props: NetworkGraphProps) {
           autoRescaleContent: "labels",
           renderEdgeLabels: true,
         },
+
+        // Runs after styles are computed, so `data` already has the
+        // graph's own color resolved — we just override it for whichever
+        // node is currently selected.
+        nodeReducer: (key, data) => {
+          if (key === searchParams.selectedNode) {
+            return { ...data, color: "green" };
+          }
+          return data;
+        },
       });
 
-      renderer.on("clickNode", ({ node }: any) => {
-        setClickedNodeId(node)
-      })
+      renderer.on("clickNode", (t: any) => {
+        const previousSelectedNodeId = searchParams.selectedNode;
+
+
+        // Only the previously selected and newly selected nodes need their
+        // display data recomputed (i.e. the reducer re-run) — no need to
+        // reprocess the whole graph.
+        renderer.refresh({
+          partialGraph: {
+            nodes: [previousSelectedNodeId, t.node].filter(Boolean) as string[],
+          },
+        });
+
+        setSearchParams({ selectedNode: t.node }, { replace: true });
+      });
 
       renderer.on("nodeDragStart", ({ allDraggedNodes }: any) => {
         for (const node of allDraggedNodes) {
@@ -236,26 +273,25 @@ export function NetworkGraph(props: NetworkGraphProps) {
 
   return (
     <>
-      <div class="flex gap-2 relative">
-        {/*<button
-          type="button"
-          onClick={() => {
-            console.log(layout);
-            layout.start();
-          }}
+      <div class="bg-green-400 fixed z-10 top-30 right-0 min-h-fit w-48 rounded-l-sm shadow-md pb-0 flex flex-col">
+        <Show
+          when={searchParams.selectedNode}
+          fallback={
+            <div class="text-sm">Click a node on the graph to view</div>
+          }
         >
-          Layout
-        </button>
+          {(nodeId) => (
+         <>
+              <div class="font-serif p-4">
+                {props.data.nodes[parseInt(nodeId() as string)].label}
+              </div>
 
-        <button type="button" onClick={() => layout?.stop()}>
-          Stop
-          </button>*/}
-        <Show when={clickedNodeId()}>
-          <div ref={popupRef} class="bg-slate-200 shadow-2xl p-3 max-w-48 absolute rounded-sm z-50"><button onClick={() => setClickedNodeId(null)} class="block font-semibold text-sm uppercase mb-8">close</button><h1 class="text-lg font-serif font-bold">{props.data.nodes[clickedNodeId() as number].label}</h1> is someone about whom we know nothing yet</div>
+                <a class="bg-green-600 font-semibold text-white text-xs uppercase py-2 px-2 h-fit rounded-b-sm" href={paths.person(nodeId())}>View full info</a>
+
+            </>
+          )}
         </Show>
       </div>
-
-
 
       <div class="w-full h-full max-h-screen" ref={container} />
     </>
@@ -265,26 +301,25 @@ export function NetworkGraph(props: NetworkGraphProps) {
 export default function Network() {
   const data = {
     nodes: {
-      "a":
-      {
-        id: "a",
+      53338: {
+        id: 53338,
         size: 1,
         label: "Maximilian I.",
         color: "blue",
       },
-      "b": {
-        id: "b",
+      53139: {
+        id: 53139,
         size: 1,
         label: "Bianca Maria Sforza",
         color: "red",
       },
-      "c": {
+      c: {
         id: "c",
         size: 1,
         label: "Homer Simpson",
         color: "red",
       },
-      "d": {
+      d: {
         id: "d",
         size: 1,
         label: "Krusty the Clown",
@@ -293,20 +328,47 @@ export default function Network() {
     },
 
     edges: [
-      { source: "a", target: "b", label: "is wife of" },
-      { source: "b", target: "c", label: "favourite Simpsons character" },
-      { source: "a", target: "c", label: "favourite Simpsons character" },
+      { source: 53338, target: 53139, label: "is wife of" },
+      { source: 53139, target: "c", label: "favourite Simpsons character" },
+      { source: 53338, target: "c", label: "favourite Simpsons character" },
       {
-        source: "a",
+        source: 53338,
         target: "d",
         label: "second favourite Simpsons character",
       },
     ],
   };
 
+  const [currentData, setCurrentData] = createSignal(data);
+
+  const addMoreData = () => {
+    setCurrentData({
+      nodes: {
+        ...currentData().nodes,
+        e: {
+          id: "e",
+          size: 1,
+          label: "Gilbert Jessop",
+          color: "red",
+        },
+      },
+      edges: [
+        ...currentData().edges,
+        {
+          source: 53338,
+          target: "e",
+          label: "admired cricketer",
+        },
+      ],
+    });
+  };
+
   return (
     <Loading>
-      <NetworkGraph data={data} />
+      <button onClick={addMoreData}>CLICK</button>
+      <div class=" h-full w-full">
+        <NetworkGraph data={currentData()} />
+      </div>
     </Loading>
   );
 }
