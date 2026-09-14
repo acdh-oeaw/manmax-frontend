@@ -30,6 +30,7 @@ import VerticalRangeSlider, {
 } from "../components/VerticalRangeSlider";
 import VerticalSlider from "../components/VerticalSlider";
 import VerticalTimeline from "../components/VerticalTimeline";
+import { paths } from "../router";
 
 type PersonProps = {
   params: {
@@ -145,6 +146,8 @@ export default function Person(props: PersonProps) {
           <h1 class="prose font-serif text-2xl">
             {person().label.substring(0, person().label.length - 1)}
           </h1>
+
+          <div><a href={paths.egonet(props.params.id, {selectedNode: props.params.id})}>View Egonet</a></div>
           <div class="grid grid-cols-12">
             <div class="grid grid-cols-12 gap-y-10 mt-16 col-span-11">
               <For each={Object.entries(statementsByYear())}>

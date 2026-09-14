@@ -7,12 +7,17 @@ import FactoidList from "./pages/FactoidList";
 import { lazy } from "solid-js";
 import Network from "./pages/Network";
 import { getPerson, getPersonList } from "./test_data_loaders/person";
+import { clientOnly } from "@solidjs/web";
 
 export const Router = createRouter({
   routes: [
     { path: "/", component: Home },
     { path: "/about", component: lazy(() => import("./pages/About")) },
-    { path: "/network", component: lazy(() => import("./pages/Network")) },
+    defineRoute({
+      path: "/egonet/:id",
+      preload: ({ params }) => getPerson(params.id),
+      component: clientOnly(() => import("./pages/Network")),
+    }),
     defineRoute({
       path: "/factoid",
       preload: ({ location }) => {

@@ -1,30 +1,18 @@
-import { onSettled, Loading, createEffect, Show, createSignal } from "solid-js";
+import { onSettled, Loading, createEffect, Show, createSignal, createStore, createMemo } from "solid-js";
 import Graph from "graphology";
 import { random } from "graphology-layout";
 import seedrandom from "seedrandom";
 import { FullNodeState } from "sigma/types";
 import { paths } from "../router";
 import { useSearchParams } from "@solidjs/router";
+import { getEgonet, TEgoNet } from "../test_data_loaders/egonet";
 
 // Initialize with a seed
 const rng = seedrandom("ASDF"); // Seed with string "hello"
 
 type NetworkGraphProps = {
-  data: {
-    nodes: {
-      [key: string]: {
-        id: string;
-        size: number;
-        label: string;
-        color: string;
-      };
-    };
-    edges: {
-      source: string;
-      target: string;
-      label: string;
-    }[];
-  };
+  data: TEgoNet,
+
 };
 
 export function NetworkGraph(props: NetworkGraphProps) {
@@ -175,7 +163,10 @@ export function NetworkGraph(props: NetworkGraphProps) {
         // graph's own color resolved — we just override it for whichever
         // node is currently selected.
         nodeReducer: (key, data) => {
-          if (key === searchParams.selectedNode) {
+          if (!searchParams) {
+            return data;
+          }
+          if (searchParams.selectedNode && key === searchParams.selectedNode) {
             return { ...data, color: "green" };
           }
           return data;
@@ -298,76 +289,25 @@ export function NetworkGraph(props: NetworkGraphProps) {
   );
 }
 
-export default function Network() {
-  const data = {
-    nodes: {
-      53338: {
-        id: 53338,
-        size: 1,
-        label: "Maximilian I.",
-        color: "blue",
-      },
-      53139: {
-        id: 53139,
-        size: 1,
-        label: "Bianca Maria Sforza",
-        color: "red",
-      },
-      c: {
-        id: "c",
-        size: 1,
-        label: "Homer Simpson",
-        color: "red",
-      },
-      d: {
-        id: "d",
-        size: 1,
-        label: "Krusty the Clown",
-        color: "red",
-      },
-    },
 
-    edges: [
-      { source: 53338, target: 53139, label: "is wife of" },
-      { source: 53139, target: "c", label: "favourite Simpsons character" },
-      { source: 53338, target: "c", label: "favourite Simpsons character" },
-      {
-        source: 53338,
-        target: "d",
-        label: "second favourite Simpsons character",
-      },
-    ],
+type TEgoNetProps = {
+  params: {
+    id: string;
   };
+};
 
-  const [currentData, setCurrentData] = createSignal(data);
+export default function Network(props: TEgoNetProps) {
 
-  const addMoreData = () => {
-    setCurrentData({
-      nodes: {
-        ...currentData().nodes,
-        e: {
-          id: "e",
-          size: 1,
-          label: "Gilbert Jessop",
-          color: "red",
-        },
-      },
-      edges: [
-        ...currentData().edges,
-        {
-          source: 53338,
-          target: "e",
-          label: "admired cricketer",
-        },
-      ],
-    });
-  };
+  const initialData = createMemo(() => getEgonet(props.params.id));
+
+
+
 
   return (
-    <Loading>
-      <button onClick={addMoreData}>CLICK</button>
+    <Loading fallback={<div><span class="loader"/></div>}>
+
       <div class=" h-full w-full">
-        <NetworkGraph data={currentData()} />
+        <NetworkGraph data={initialData()} />
       </div>
     </Loading>
   );
