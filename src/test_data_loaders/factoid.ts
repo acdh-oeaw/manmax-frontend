@@ -9,6 +9,9 @@ export const getFactoid = query(async (id: string): Promise<TFactoid> => {
 
 }, "factoid");
 
+
+
+
 export type ItemList = { id: number, label: string }[];
 export type ListResult = { items: ItemList, count: number };
 
@@ -19,7 +22,7 @@ export const getFactoidList = query(async (q: string | undefined): Promise<ListR
     return data
   }
 
-  const resp = await fetch(`${BASE_URL}/factoids/?q=${q}`)
+  const resp = await fetch(`${BASE_URL}/factoids?q=${q}`)
   const data = await resp.json()
   return data
 }, "factoidList")

@@ -17,7 +17,7 @@ export const getPersonList = query(async (q: string | undefined) => {
     return data
   }
 
-  const resp = await fetch(`${BASE_URL}/persons/?q=${q}`)
+  const resp = await fetch(`${BASE_URL}/persons?q=${q}`)
   const data = await resp.json()
   return data
 }, "personList")
