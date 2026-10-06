@@ -76,7 +76,7 @@ export function Main(props: MainProps) {
               <a href={paths.about()}>About</a>
               <a href={paths.person()}>Persons</a>
               <a href={paths.factoid()}>Factoids</a>
-              <a href={paths.network()}>Network</a>
+              {/*<a href={paths.network()}>Network</a>*/}
             </div>
           </aside>
           <main

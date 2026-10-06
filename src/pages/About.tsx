@@ -4,6 +4,8 @@ function About(props) {
     <h1 class="text-2xl text-gray-900-50">
       Welcome to Managing Maximilian
     </h1>
+    <h2 class="text-red-600">This is placeholder text and not a description of the project</h2>
+
     <p>Maximilian I was born on March 22, 1459, in Wiener Neustadt, the son of Holy Roman Emperor Frederick III and Eleanor of Portugal. He grew up during a turbulent period for the House of Habsburg, as his father struggled to hold together a fragmented and financially strained empire. Despite these difficulties, Frederick III harbored grand ambitions for the dynasty, famously adopting the motto "AEIOU," often interpreted as a Latin phrase proclaiming Austria's destiny to rule the world. Maximilian was raised with this sense of dynastic purpose, and from an early age he was groomed to expand Habsburg influence through both military campaigns and, more distinctively, strategic marriages.</p>
 
     <p>In 1477, Maximilian married Mary of Burgundy, heiress to the immensely wealthy Duchy of Burgundy, following the death of her father, Charles the Bold, in battle. This marriage was a turning point for the Habsburgs, bringing the rich Burgundian territories, including much of the Low Countries, into the family's orbit. The union was not without conflict, however, as King Louis XI of France sought to claim Burgundian lands for himself, leading to years of warfare between Maximilian and the French crown. Mary's tragic death in a riding accident in 1482 left Maximilian as regent for their young son, Philip the Handsome, complicating his authority in the Burgundian territories.</p>
