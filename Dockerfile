@@ -9,14 +9,14 @@
 
 # serve
 FROM node:24-alpine AS serve
-
-RUN mkdir /app && chown -R node:node /app
 COPY . /app
+RUN chown -R node:node /app
+
 WORKDIR /app
 
 USER node
 
-RUN npm install
+RUN npm ci
 
 RUN npm run build
 
