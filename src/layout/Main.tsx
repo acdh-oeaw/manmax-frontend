@@ -91,8 +91,7 @@ export function Main(props: MainProps) {
       </div>
 
       <footer class="bg-gray-100 p-4 text-xs">
-        Managing Maximilian Project (conceived in all its glory by Andreas
-        Zajic)
+        Managing Maximilian 2026. <span class="text-red-600 font-semibold">DEMO VERSION 0.1</span>
       </footer>
     </div>
   );

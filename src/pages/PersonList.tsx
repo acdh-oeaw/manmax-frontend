@@ -12,7 +12,9 @@ type PersonProps = {};
 export default function PersonList(props: PersonProps) {
   let inputRef!: HTMLInputElement;
   const [search, setSearch] = useSearchParams();
-  const personList = createMemo(() => getPersonList(search.q as string));
+  const data = createMemo(() => getPersonList(search.q as string));
+  const personList = createMemo(() => data()["items"])
+  const count = createMemo(() => data()["count"])
 
   onSettled(() => {
     if (search.q) {
@@ -26,20 +28,19 @@ export default function PersonList(props: PersonProps) {
       <h1 class="text-2xl font-sans  font-semibold mb-20 inline mr-2">
         Persons</h1>
 
-      <div class="mb-12  bg-gray-100 p-3 rounded-sm">
-        <div class="flex justify-center items-center grow">
+      <div class="mb-12   p-3 rounded-sm">
+        <div class="flex flex-col justify-center items-center grow">
           <input
             type="text"
             placeholder="Search Persons..."
-            class="h-10 border rounded-md"
+            class="h-10 bg-blue-500 text-white rounded-xs p-4 w-96 focus:outline-0"
             onInput={(e) => { setSearch({ q: e.target.value }) }}
 
             ref={inputRef}
-          ></input> <Loading><Show when={isPending(personList)}><span class="spinner"/></Show></Loading>
+          ></input> <span class={["mt-2 text-xs font-semibold", {"text-red-600": count() === 0}]}>{ count()} results</span>
+          <Loading><Show when={isPending(personList)}><div><span class="loader" /></div></Show></Loading>
         </div>
-        <Show when={search.q}>
-          <div class="flex justify-center grow mt-2 text-red-700">No searching yet; dummy backend!</div>
-        </Show>
+
       </div>
 
       <Loading fallback={<div><span class="loader"/></div>}>

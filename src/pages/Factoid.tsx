@@ -48,7 +48,7 @@ export default function Factoid(props: FactoidProps) {
         </div>
 
         <div class="border-b border-slate-200 mt-12 mb-16"> </div>
-        <div>
+        <div class="mb-40">
           <For each={factoid().has_statements}>
             {(statement) => (
               <Statement statement={statement} topLevel={true}/>

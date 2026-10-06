@@ -1,5 +1,5 @@
 import { createMemo, flush, For, isPending, onSettled, Show } from "solid-js";
-import { getFactoid, getFactoidList } from "../test_data_loaders/factoid";
+import { getFactoid, getFactoidList, ItemList } from "../test_data_loaders/factoid";
 import { Loading } from "solid-js";
 import { paths } from "../router";
 import { removeBrackets } from "../utils/utils";
@@ -11,7 +11,9 @@ type FactoidProps = {};
 export default function FactoidList(props: FactoidProps) {
   let inputRef!: HTMLInputElement;
   const [search, setSearch] = useSearchParams();
-  const factoidList = createMemo(() => getFactoidList(search.q as string));
+  const data = createMemo(() => getFactoidList(search.q as string));
+  const factoidList = createMemo<ItemList>(() => data()["items"]);
+  const count = createMemo<number>(() => data()["count"]);
 
   onSettled(() => {
     if (search.q) {
@@ -27,20 +29,19 @@ export default function FactoidList(props: FactoidProps) {
       <aside class="mb-12 mt-6 font-sans text-gray-800 prose rounded-sm block">
          Faktoide bilden die Grundlage des Datenmodells von Mananging Maximilian. Jedes Faktoid repräsentiert die Interpretation eines Abschnitts eines Quellenmaterials. Es kann beliebig viele Aussagen enthalten, die den Inhalt formal darstellen.
       </aside>
-      <div class="mb-12  bg-gray-100 p-3 rounded-sm">
-        <div class="flex justify-center items-center grow">
+      <div class="mb-12   p-3 rounded-sm">
+        <div class="flex flex-col justify-center items-center grow">
           <input
             type="text"
             placeholder="Search Factoids..."
-            class="h-10 border rounded-md"
+            class="h-10 bg-blue-500 text-white rounded-xs p-4 w-96 focus:outline-0"
             onInput={(e) => { setSearch({ q: e.target.value }) }}
 
             ref={inputRef}
-          ></input> <Loading><Show when={isPending(factoidList)}><span class="spinner"/></Show></Loading>
+          ></input> <span class={["mt-2 text-xs font-semibold", {"text-red-600": count() === 0}]}>{ count()} results</span>
+          <Loading><Show when={isPending(factoidList)}><div><span class="loader" /></div></Show></Loading>
         </div>
-        <Show when={search.q}>
-          <div class="flex justify-center grow mt-2 text-red-700">No searching yet; dummy backend!</div>
-        </Show>
+
       </div>
 
       <Loading fallback={<div><span class="loader"/></div>}>

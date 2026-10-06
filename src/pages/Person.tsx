@@ -142,7 +142,7 @@ export default function Person(props: PersonProps) {
         }
       >
         <Title>{person().label}</Title>
-        <>
+        <div class="mb-20">
           <h1 class="prose font-serif text-2xl">
             {person().label.substring(0, person().label.length - 1)}
           </h1>
@@ -195,17 +195,19 @@ export default function Person(props: PersonProps) {
             </div>
             <div class="col-span-1 relative">
               <div class="fixed  top-24 bottom-12">
+                <Show when={timelineStartDate() && timelineEndDate()}>
                 <VerticalTimeline
                   startYear={timelineStartDate()}
                   endYear={timelineEndDate()}
                   value={timelinePosition()}
                   onChange={updateTimelinePosition}
                   items={statementsByYear()}
-                />
+                  />
+                </Show>
               </div>
             </div>
           </div>
-        </>
+        </div>
       </Loading>
     </Errored>
   );
