@@ -11,6 +11,7 @@
 FROM node:24-alpine AS serve
 
 RUN mkdir /app && chown -R node:node /app
+COPY . /app
 WORKDIR /app
 
 USER node
