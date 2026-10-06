@@ -13,7 +13,7 @@ import path from 'node:path';
 import { handleRequest } from './dist/server/server.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const port = process.env.PORT || 4173;
+const port = process.env.PORT || 3000;
 
 const MIME = {
   '.js': 'application/javascript',
